@@ -1,0 +1,19 @@
+.wrapper {
+  background-color: rgb(250, 244, 234);
+  display: flex;
+  height: 72px;
+  flex-direction: row-reverse;
+
+  & > .block {
+    padding: 5px 10px;
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(244, 235, 217);
+    }
+  }
+}
