@@ -19,7 +19,6 @@ const Object3D: React.FC = () => {
       );
       const renderer = new THREE.WebGLRenderer();
       const loader = new GLTFLoader();
-      debugger;
       loader.load(
         "./object3D/utils/character/scene.gltf",
         function (gltf) {
