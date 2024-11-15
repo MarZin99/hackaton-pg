@@ -8,13 +8,16 @@ const Topbar: React.FC<TopbarProps> = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      {Pages.map((page, i) => {
-        return (
-          <Link key={i} href={page.href} className={styles.block}>
-            <p>{page.name}</p>
-          </Link>
-        );
-      })}
+      <div className={styles.name}>{name}</div>
+      <div className={styles.pages}>
+        {Pages.map((page, i) => {
+          return (
+            <Link key={i} href={page.href} className={styles.block}>
+              <p>{page.name}</p>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

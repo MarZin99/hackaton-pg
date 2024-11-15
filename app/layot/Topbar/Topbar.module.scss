@@ -1,12 +1,24 @@
 .wrapper {
   background-color: rgb(250, 244, 234);
   display: flex;
-  height: 72px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: x-large;
+  padding: 0px 20px;
+  font-weight: 700;
+  text-shadow: 3px 3px 1px rgb(235, 228, 228);
+}
+
+.pages {
+  display: flex;
+  height: 52px;
   flex-direction: row-reverse;
 
   & > .block {
     padding: 5px 10px;
-    border: solid 1px black;
     display: flex;
     align-items: center;
     text-align: center;

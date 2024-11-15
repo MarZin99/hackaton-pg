@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Topbar name="TopBar" />
+        <Topbar name="Hackaton 2024 Playground" />
         {children}
       </body>
     </html>
