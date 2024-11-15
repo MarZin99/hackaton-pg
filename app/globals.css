@@ -24,6 +24,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body > *:last-child {
+  height: calc(100vh - 52px);
+  overflow: hidden;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

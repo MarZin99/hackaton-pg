@@ -2,10 +2,10 @@
 
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
-import styles from "./ThreeJS.module.scss";
-import { CUBES } from "./threeJs.utlis/structures";
+import styles from "./Object3D.module.scss";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-const ThreeJS: React.FC = () => {
+const Object3D: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,16 +18,23 @@ const ThreeJS: React.FC = () => {
         1000
       );
       const renderer = new THREE.WebGLRenderer();
-
-      scene.add(...CUBES);
-      renderer.setSize(window.innerWidth, window.innerHeight - 52);
-      containerRef.current?.appendChild(renderer.domElement);
-      camera.position.z = 5;
+      const loader = new GLTFLoader();
+      debugger;
+      loader.load(
+        "./object3D/utils/character/scene.gltf",
+        function (gltf) {
+          scene.add(gltf.scene);
+        },
+        function (xhr) {
+          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
 
       const renderScene = () => {
-        CUBES[0].rotation.x += 0.01;
-        CUBES[1].rotation.x -= 0.007;
-        CUBES[1].rotation.y -= 0.07;
         renderer.render(scene, camera);
 
         requestAnimationFrame(renderScene);
@@ -40,4 +47,4 @@ const ThreeJS: React.FC = () => {
   return <div ref={containerRef} className={styles.wrapper}></div>;
 };
 
-export default ThreeJS;
+export default Object3D;
