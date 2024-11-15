@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import styles from "./ThreeJS.module.scss";
+import { CUBES } from "./threeJs.utlis/structures";
 
 const ThreeJS: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,24 +18,18 @@ const ThreeJS: React.FC = () => {
         1000
       );
       const renderer = new THREE.WebGLRenderer();
-      //--STRUCTURES
-      const cubeGeometry1 = new THREE.BoxGeometry(1, 1, 1);
-      const cubeMaterial1 = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-      const cubeGeometry2 = new THREE.BoxGeometry(2, 2, 1);
-      const cubeMaterial2 = new THREE.MeshBasicMaterial({ color: 0x348900 });
-      const cube1 = new THREE.Mesh(cubeGeometry1, cubeMaterial1);
-      const cube2 = new THREE.Mesh(cubeGeometry2, cubeMaterial2);
-      //--//STRUCTURES
 
-      scene.add(cube1, cube2);
+      scene.add(...CUBES);
       renderer.setSize(window.innerWidth, window.innerHeight - 52);
       containerRef.current?.appendChild(renderer.domElement);
       camera.position.z = 5;
 
       const renderScene = () => {
-        cube1.rotation.x += 0.01;
-        cube2.rotation.y += 0.01;
+        CUBES[0].rotation.x += 0.01;
+        CUBES[1].rotation.x -= 0.007;
+        CUBES[1].rotation.y -= 0.07;
         renderer.render(scene, camera);
+
         requestAnimationFrame(renderScene);
       };
 
