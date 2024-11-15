@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as THREE from "three";
 import * as React from "react";
 import { useRef, useState } from "react";
@@ -6,11 +5,11 @@ import { useFrame } from "@react-three/fiber";
 import BoxProps from "./Box.props";
 
 function Box(props: BoxProps) {
-  const ref = useRef<THREE.Mesh>(null!);
-  const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
+  const ref = useRef<THREE.Mesh>();
+  const [hovered, setHovered] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
-  const { dimension, color, hoverColor = "red" } = props;
+  const { dimension, color, hoverColor } = props;
 
   useFrame((state, delta) => (ref.current.rotation.x += 0.01));
 
@@ -19,9 +18,13 @@ function Box(props: BoxProps) {
       {...props}
       ref={ref}
       scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}
+      onClick={() => setClicked(!clicked)}
+      onPointerOver={() => {
+        setHovered(true);
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+      }}
     >
       <boxGeometry
         args={[dimension.width, dimension.height, dimension.width]}

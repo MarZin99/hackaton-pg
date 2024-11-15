@@ -4,3 +4,7 @@
   background-color: red;
   display: block;
 }
+
+.canvas {
+  height: calc(100vh - 52px) !important;
+}

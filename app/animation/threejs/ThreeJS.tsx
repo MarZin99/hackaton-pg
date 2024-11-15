@@ -1,24 +1,26 @@
 "use client";
 
 import React from "react";
-import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import Box from "./Box/Box";
+import styles from "./ThreeJS.module.scss";
 
 const ThreeJS: React.FC = () => {
   return (
-    <Canvas>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+    <Canvas className={styles.canvas}>
+      <ambientLight intensity={1} />
+      {/* <spotLight position={[0, 10, 10]} angle={0.35} penumbra={1} /> */}
       <pointLight position={[-10, -10, -10]} />
       <Box
         dimension={{ width: 1, height: 1, depth: 1 }}
-        color={THREE.Color["red"]}
+        color={"purple"}
+        hoverColor={"yellow"}
         position={[1.2, 0, 0]}
       />
       <Box
         dimension={{ width: 1, height: 1, depth: 1 }}
-        color={THREE.Color["red"]}
+        color={"red"}
+        hoverColor={"green"}
         position={[-1.2, 0, 0]}
       />
     </Canvas>

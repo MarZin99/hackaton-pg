@@ -1,9 +1,7 @@
-import { Color } from "three";
-
 type BoxProps = {
   dimension: Dimension;
-  color: Color;
-  hoverColor?: Color;
+  color: string;
+  hoverColor?: string;
 } & JSX.IntrinsicElements["mesh"];
 
 type Dimension = {
