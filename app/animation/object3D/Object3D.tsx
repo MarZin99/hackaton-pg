@@ -1,49 +1,28 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
 import styles from "./Object3D.module.scss";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import React, { Suspense } from "react";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { Environment, OrbitControls } from "@react-three/drei";
+
+const Doggo = () => {
+  const gltf = useLoader(GLTFLoader, "/Models/character/scene.gltf");
+  return <primitive object={gltf.scene} />;
+};
 
 const Object3D: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
-      const renderer = new THREE.WebGLRenderer();
-      const loader = new GLTFLoader();
-      loader.load(
-        "./object3D/utils/character/scene.gltf",
-        function (gltf) {
-          scene.add(gltf.scene);
-        },
-        function (xhr) {
-          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-        },
-        undefined,
-        function (error) {
-          console.error(error);
-        }
-      );
-
-      const renderScene = () => {
-        renderer.render(scene, camera);
-
-        requestAnimationFrame(renderScene);
-      };
-
-      renderScene();
-    }
-  }, []);
-
-  return <div ref={containerRef} className={styles.wrapper}></div>;
+  return (
+    <div className={styles.wrapper}>
+      <Canvas>
+        <Suspense fallback={null}>
+          <Doggo />
+          <OrbitControls />
+          <Environment preset="sunset" background />
+        </Suspense>
+      </Canvas>
+    </div>
+  );
 };
 
 export default Object3D;
