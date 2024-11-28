@@ -1,0 +1,23 @@
+.gltfLoader {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  z-index: 3;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 10px;
+}
+
+.successMessage {
+  color: green;
+  margin-top: 10px;
+}

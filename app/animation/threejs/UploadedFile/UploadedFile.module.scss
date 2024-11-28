@@ -1,0 +1,19 @@
+.wrapper {
+  width: 100%;
+  height: calc(100vh - 52px);
+  display: block;
+}
+
+.sideBarContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.backgroundCanvas {
+  position: fixed !important;
+  z-index: 1;
+}
+.objectCanvas {
+  position: fixed !important;
+  z-index: 2;
+}
