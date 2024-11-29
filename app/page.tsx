@@ -1,5 +1,5 @@
-import styles from "./page.module.css";
+import UploadedFile from "./animation/threejs/UploadedFile/UploadedFile";
 
 export default function Home() {
-  return <div>Home</div>;
+  return <UploadedFile />;
 }

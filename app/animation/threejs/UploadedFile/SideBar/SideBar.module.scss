@@ -1,0 +1,10 @@
+.wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  align-self: center;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
