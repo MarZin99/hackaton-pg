@@ -9,7 +9,6 @@ import SideBar from "./SideBar/SideBar";
 import * as THREE from "three";
 import html2canvas from "html2canvas";
 import BackgroundCanvas from "./BackgroundCanvas/BackgroundCanvas";
-import { ShaderConfig } from "./BackgroundJsonCanvas/BackgroundJsonCanvas.types";
 import { BackgroundFrame } from "./UploadedFile.types";
 import { backgrounds, radioImages } from "./UploadedFile.utils";
 import { Button } from "@/components/ui/button";
@@ -185,7 +184,7 @@ const UploadedFile: React.FC = () => {
         if (child.isMesh) {
           // Option 1: If you want to replace existing material
           child.material = new THREE.MeshStandardMaterial({
-            color: "#" + color ?? "AAAAAA",
+            color: color ?? "AAAAAA",
             metalness: metalness ?? child.material.metalness,
             roughness: roughness ?? child.material.roughness,
           });
@@ -193,43 +192,6 @@ const UploadedFile: React.FC = () => {
       });
     }
   }, [color, metalness, model, roughness]);
-
-  const [shaderConfig, setShaderConfig] = React.useState<ShaderConfig | null>(
-    null
-  );
-
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        try {
-          const content = e.target?.result as string;
-          const parsedConfig1 = JSON.parse(content);
-          const parsedConfig = parsedConfig1.history[0];
-
-          // Optional: Add some validation
-          if (
-            parsedConfig.compiledVertexShaders &&
-            parsedConfig.compiledFragmentShaders
-          ) {
-            setShaderConfig(parsedConfig);
-          } else {
-            console.error("Invalid shader configuration");
-            alert(
-              "The uploaded file does not contain a valid shader configuration."
-            );
-          }
-        } catch (error) {
-          console.error("Error parsing JSON", error);
-          alert("Failed to parse the JSON file. Please check the file format.");
-        }
-      };
-
-      reader.readAsText(file);
-    }
-  };
 
   return (
     <div className={styles.wrapper}>
