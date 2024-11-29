@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./GLTFLoader.module.scss";
+import styles from "./BackgroundLoader.module.scss";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import GLTFLoaderComponentProps from "./GLTFLoader.types";
-import { Button } from "@/components/ui/button";
+import BackgroundLoaderComponentProps from "./BackgroundLoader.types";
 
-const GLTFLoaderComponent: React.FC<GLTFLoaderComponentProps> = ({
-  onModelLoaded,
+const BackgroundLoaderComponent: React.FC<BackgroundLoaderComponentProps> = ({
+  onBackgroundLoaded,
 }) => {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [error, setError] = React.useState<string | null>(null);
@@ -20,11 +19,6 @@ const GLTFLoaderComponent: React.FC<GLTFLoaderComponentProps> = ({
     setLoadedModel(null);
 
     if (!file) return;
-
-    if (!file.name.toLowerCase().endsWith(".gltf")) {
-      setError("Please select a valid .gltf file");
-      return;
-    }
 
     const maxSize = 50 * 1024 * 1024;
     if (file.size > maxSize) {
@@ -41,7 +35,7 @@ const GLTFLoaderComponent: React.FC<GLTFLoaderComponentProps> = ({
         (gltf) => {
           setSelectedFile(file);
           setLoadedModel(gltf.scene);
-          onModelLoaded?.(gltf.scene);
+          onBackgroundLoaded?.(gltf.scene);
         },
         // Optional progress callback
         (xhr) => {
@@ -49,9 +43,9 @@ const GLTFLoaderComponent: React.FC<GLTFLoaderComponentProps> = ({
         },
         // Error callback
         (error) => {
-          setError("Error loading GLTF file");
+          setError("Error loading background file");
           console.error(
-            "An error occurred while loading the GLTF file:",
+            "An error occurred while loading the background file:",
             error
           );
         }
@@ -75,9 +69,15 @@ const GLTFLoaderComponent: React.FC<GLTFLoaderComponentProps> = ({
         accept=".gltf"
         className={styles.hiddenInput}
       />
-      <Button onClick={triggerFileInput}>Select File</Button>
+      <button onClick={triggerFileInput}>Select GLTF</button>
+
+      {error && <div className={styles.errorMessage}>{error}</div>}
+
+      {selectedFile && (
+        <div className={styles.successMessage}>{selectedFile.name}</div>
+      )}
     </div>
   );
 };
 
-export default GLTFLoaderComponent;
+export default BackgroundLoaderComponent;

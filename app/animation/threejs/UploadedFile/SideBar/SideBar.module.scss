@@ -1,11 +1,9 @@
 .wrapper {
   position: absolute;
   right: 0;
-  top: 60px;
+  top: 0;
   align-self: center;
-  height: 80vh;
-  width: 100px;
-  background-color: rgba(84, 77, 77, 0.601);
+  width: 240px;
   display: flex;
   flex-direction: column;
   z-index: 3;

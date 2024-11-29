@@ -1,0 +1,10 @@
+@mixin workspaceSize {
+  width: 672px !important;
+  height: 384px !important;
+}
+
+.backgroundCanvas {
+  position: fixed !important;
+  z-index: 1;
+  @include workspaceSize;
+}

@@ -40,3 +40,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 3. Zrobic REGEX dla Kolorów
 4. Zrobic Roughness i Metalness od 0 do 1
 5. Reset koloru, metal, rough, rotacja off
+6. Export nie dziala
+7. Zrobic selector do IFrame

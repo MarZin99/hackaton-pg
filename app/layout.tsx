@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Topbar from "./layot/Topbar/Topbar.page";
+import UploadedFile from "./animation/threejs/UploadedFile/UploadedFile";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,7 +28,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Topbar name="Hackaton 2024 Playground" />
         {children}
       </body>
     </html>
